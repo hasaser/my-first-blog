@@ -1,0 +1,61 @@
+﻿{% extends 'base.html'%}
+{% block title%}
+Anasayfa | {{block.super}}
+{%endblock%}
+
+{% block body %}
+{# {{ post.get_absolute_url }} #}
+{% for post in posts %}
+<div class="card">
+	<div class="card-header">
+	<div class=baslik style="margin-left: 15px">
+	<h1>
+	<a href="{% url 'icerik' id=post.id %}">
+	{{ post.baslik }}
+	</a>
+	</h1>
+	</div>
+	<div class=tarih align="right" style="margin-left: 15px">
+	<sub>
+	 {{ post.tarih }}
+	</sub>
+	</div>
+	</div>
+	<div class="card-body">
+	<div id="{{post.id}}yazi" style="margin-left: 15px">{{ post.icerik }}</div><br></div>
+	<button id="{{post.id}}" class="btn btn-light">Tümünü göster</button>
+	<div class="card-footer">
+	<a href="{% url 'icerik' id=post.id %}" class="btn btn-success">İncele</a>
+	<a href="{% url 'sil' id=post.id %}" class="btn btn-danger">Sil</a>
+	<a href="{% url 'duzenle' id=post.id %}" class="btn btn-primary">Düzenle</a>
+</div></div>
+<script>
+	var metin="";
+	var ilkyuz="";
+	var metin=$("#{{post.id}}yazi").text();
+	var postid="{{post.id}}"
+	var ilkyuz=metin.substring(0,200);
+	$("#{{post.id}}yazi").text(ilkyuz);
+	$("#{{post.id}}yazi").html(ilkyuz+"<div id='"+postid+"sonrası'>"+metin.substring(200)+"</div>");
+	$("#{{post.id}}sonrası").fadeOut(0)
+/*	$(document).ready(function(){
+		//var metin=$("#{{post.id}}yazi").text();
+		//var ilkyuz=metin.substring(0,100);
+		$("#{{post.id}}yazi").text(ilkyuz)
+	})*/
+	$("#{{post.id}}").click(function(){
+		$("#{{post.id}}").fadeOut(0)
+		$("#{{post.id}}sonrası").fadeIn(400)
+		/*if($("#{{post.id}}yazi").text()==ilkyuz){
+			$("#{{post.id}}yazi").text(metin);
+		}
+		else{
+			$("#{{post.id}}yazi").text(ilkyuz);
+		}*/
+
+	})
+</script>
+{% empty %}
+Hiç Post yazılmadı.
+{% endfor %}
+{% endblock%}

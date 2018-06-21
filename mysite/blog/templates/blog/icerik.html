@@ -1,0 +1,11 @@
+﻿{%extends 'base.html'%}
+{% block title %}
+{{post.baslik}} | {{ block.super }}
+{% endblock %}
+    {% block body%}
+        <h1>{{ post.baslik }}</h1><br>
+        {{ post.tarih }}<br>
+        {{ post.icerik }}<br>
+    {%endblock%}
+</body>
+</html>

@@ -1,0 +1,26 @@
+{%load static%}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %} Local Host {% endblock%} </title>
+    <link rel="stylesheet" href=https://getbootstrap.com/docs/4.1/dist/css/bootstrap.min.css>
+    <link rel="icon" href="https://www.blogger.com/about/favicon/favicon-96x96.png">
+</head>
+<body>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://getbootstrap.com/docs/4.1/assets/js/vendor/popper.min.js"></script>
+        <script src="https://getbootstrap.com/docs/4.1/dist/js/bootstrap.min.js"></script>
+
+    {% include "header.html" %}
+    <div class="container" style="margin-top: 50px">
+    {% include "messages.html" %}
+
+    {%block body%}
+
+    {% endblock body%}
+</div>
+</body>
+</html>
