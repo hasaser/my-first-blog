@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Kayıt Ol {{block.super}}
+{% endblock %}
+
+{% block body %}
+<div class="card bg-dark text-white">
+<div class="card-body">
+  <form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+      <div>
+        {{ field.label_tag }}
+        {{ field }}
+      </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-light">Kayıt Ol</button>
+  </form>
+</div>
+</div>
+  <p> Hesabın var mı? <a href="{{urlsi}}">Giriş Yap</a></p>
+<script>
+    $("#id_username").attr("class","form-control")
+    $("#id_password1").attr("class","form-control")
+    $("#id_password2").attr("class","form-control")
+</script>
+{% endblock body %}

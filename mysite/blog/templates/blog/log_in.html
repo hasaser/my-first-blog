@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}
+Giriş Yap {{block.super}}
+{% endblock %}
+
+
+{% block body %}
+<div class="card bg-dark text-white">
+<div class="card-body">
+  <form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+{{ field.label_tag }}
+{{ field }}
+    {% endfor %}
+    <button type="submit" class="btn btn-light">Giriş Yap</button>
+  </form>
+  </div>
+  </div>
+  <p>Hesabın yok mu? <a href="{{urlsi}}">Kayıt Ol</a></p>
+<script>
+    $("#id_username").attr("class","form-control")
+    $("#id_password").attr("class","form-control")
+</script>
+{% endblock body %}

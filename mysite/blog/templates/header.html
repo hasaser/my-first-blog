@@ -5,12 +5,24 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarsExample04">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
+        <li class="nav-item">
           <a class="nav-link" href="{% url 'anasayfa' %}"> Anasayfa <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'yeni_post' %}"> Post ekle </a>
         </li>
+        {% if request.user.is_authenticated%}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'cıkıs'%}"> Çıkış Yap </a>
+        </li>
+        {% else %}
+        <li class="nav-item justify-content-md-right">
+          <a class="nav-link" href="{% url 'giris' %}"> Giriş Yap </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link justify-content-md-right" href="{% url 'kayit' %}"> Kayıt Ol </a>
+        </li>
+        {% endif %}
       </ul>
     </div>
 </div>

@@ -1,6 +1,6 @@
 ﻿{% extends 'base.html'%}
 {% block title%}
-Anasayfa | {{block.super}}
+Anasayfa {{block.super}}
 {%endblock%}
 
 {% block body %}
@@ -32,9 +32,9 @@ Anasayfa | {{block.super}}
 <script>
 	var metin="";
 	var ilkyuz="";
-	var metin=$("#{{post.id}}yazi").text();
+	var metin="{{ post.icerik }}";
 	var postid="{{post.id}}"
-	var ilkyuz=metin.substring(0,200);
+	var ilkyuz="{{ post.icerik|truncatewords:30 }}";
 	$("#{{post.id}}yazi").text(ilkyuz);
 	$("#{{post.id}}yazi").html(ilkyuz+"<div id='"+postid+"sonrası'>"+metin.substring(200)+"</div>");
 	$("#{{post.id}}sonrası").fadeOut(0)
@@ -56,6 +56,10 @@ Anasayfa | {{block.super}}
 	})
 </script>
 {% empty %}
-Hiç Post yazılmadı.
+<div class="container">
+	<h1>
+		Hiç Post yazılmadı.
+	</h1>
+</div>
 {% endfor %}
 {% endblock%}
